@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Profiles{% endblock %}
+{% block title %}Profile List{% endblock %}
 
 {% block content %}
     {% for profile in profiles %}
         <h5 class="card-title">{{ profile }}</h5>
-        <a href="#" class="btn btn-primary">Go Profile</a>
+        <a href="{% url "profiles:profile-detail" profile.pk %}" class="btn btn-primary btn-sm">View Profile</a>
         <hr>
     {% endfor %}
 {% endblock %}

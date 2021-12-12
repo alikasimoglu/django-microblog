@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ profile.user }}{% endblock %}
+
+{% block content %}
+    <h5 class="card-title">{{ profile.user }}</h5>
+    {% if subscribe == True %}
+        <form action="{% url "profiles:profile_subscribe" %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="profile_pk" value={{ object.pk }}>
+            <button type="submit" class="btn btn-danger btn-sm">Unsubscribe</button>
+        </form>
+    {% else %}
+        <form action="{% url "profiles:profile_subscribe" %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="profile_pk" value={{ object.pk }}>
+            <button type="submit" class="btn btn-success btn-sm">Subscribe</button>
+        </form>
+    {% endif %}
+    <hr>
+{% endblock %}
