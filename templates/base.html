@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <br>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="card col-6">
+                    <div class="card-body">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                </div>
+                <div class="list-group col-3">
+                    <ul>
+                        <li class="list-group-item list-group-item-secondary" aria-current="true">Welcome {{ request.user }}</li>
+                        <li class="list-group-item list-group-item-action"><a href="{% url "profiles:profiles" %}">Profile List</a></li>
+                        <li class="list-group-item list-group-item-action"><a href="#">Add a Blog Post</a></li>
+                        <li class="list-group-item list-group-item-action"><a href="#">My Blog</a></li>
+                        <li class="list-group-item list-group-item-action"><a href="#">Subscribed Blogs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        {% block scripts %}
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        {% endblock %}
+
+    </body>
+</html>

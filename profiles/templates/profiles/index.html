@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Profiles{% endblock %}
+
+{% block content %}
+    {% for profile in profiles %}
+        <h5 class="card-title">{{ profile }}</h5>
+        <a href="#" class="btn btn-primary">Go Profile</a>
+        <hr>
+    {% endfor %}
+{% endblock %}
