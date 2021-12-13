@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Subscribed BLog Posts{% endblock %}
+
+{% block content %}
+    {% for post in subcribedblogposts %}
+        <h5 class="card-title">{{ post.post_title }}</h5>
+        <p class="card-text">{{ post.created }}</p>
+        <p class="card-body">{{ post.post_content }}</p>
+        <hr>
+    {% endfor %}
+{% endblock %}
