@@ -8,9 +8,6 @@ class Profile(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
-    def profile_blog_posts(self):
-        return self.blogpost_set.all()
-
     def __str__(self):
         return str(self.user.username)
 

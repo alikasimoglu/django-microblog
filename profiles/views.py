@@ -27,13 +27,12 @@ class ProfileDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         view_profile = self.get_object()
         my_profile = Profile.objects.get(user=self.request.user)
-        profile_posts = BlogPost.objects.filter(author__user=view_profile.user)
         if view_profile.user in my_profile.subscribed.all():
             subscribe = True
         else:
             subscribe = False
         context["subscribe"] = subscribe
-        context["profile_posts"] = profile_posts
+        context["profile_posts"] = BlogPost.objects.filter(author__user=view_profile.user)
         return context
 
 
