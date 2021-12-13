@@ -1,5 +1,4 @@
 from itertools import chain
-from django.shortcuts import render
 from django.views.generic import ListView
 from blogs.models import BlogPost
 from profiles.models import Profile

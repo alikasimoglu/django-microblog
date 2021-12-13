@@ -18,4 +18,10 @@
         </form>
     {% endif %}
     <hr>
+    {% for post in profile_posts %}
+        <h5 class="card-title">{{ post.post_title }}</h5>
+        <p class="card-text">{{ post.created }}</p>
+        <p class="card-body">{{ post.post_content }}</p>
+        <hr>
+    {% endfor %}
 {% endblock %}

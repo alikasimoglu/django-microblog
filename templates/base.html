@@ -20,7 +20,7 @@
                     <ul>
                         <li class="list-group-item list-group-item-secondary" aria-current="true">Welcome {{ request.user }}</li>
                         <li class="list-group-item list-group-item-action"><a href="{% url "profiles:profiles" %}">Profile List</a></li>
-                        <li class="list-group-item list-group-item-action"><a href="{% url "blogs:blogs" %}">All Blogs</a></li>
+                        <li class="list-group-item list-group-item-action"><a href="{% url "blogs:blogs" %}">All Blog Posts</a></li>
                         <li class="list-group-item list-group-item-action"><a href="#">Add a Blog Post</a></li>
                         <li class="list-group-item list-group-item-action"><a href="{% url "blogs:my-blog" user.pk %}">My Blog</a></li>
                         <li class="list-group-item list-group-item-action"><a href="{% url "blogs:subscribed-blogs" %}">Subscribed Blogs</a></li>
