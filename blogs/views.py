@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.views.generic import ListView, CreateView
 from blogs.models import BlogPost
 from profiles.models import Profile
+from django.contrib.sites.models import Site
 
 
 class BlogPostListView(ListView):
@@ -50,13 +51,16 @@ class SubcribedBlogsListView(ListView):
 
 @receiver(post_save, sender=BlogPost)
 def send_mail_to_subs(sender, instance, created, **kwargs):
+    current_site = Site.objects.get_current()
+    domain = current_site.domain
     if created:
-        send_mail(
-            f'New Post',
-            'Hi .... ',
-            'testcod77@gmail.com',
-            ["alikasimoglu@gmail.com"],
-        )
+        for subs in instance.author.subscribed.all():
+            send_mail(
+                f'New Post from {instance.author}',
+                f'Title: {instance.post_title}\nContent: {instance.post_content}\nDate Created: {instance.created}\nUrl: {domain}',
+                'testcod77@gmail.com',
+                [subs.email],
+            )
 
 
 class BlogPostCreateView(CreateView):
