@@ -42,8 +42,13 @@ def profile_subscribe_button(request):
         pk = request.POST.get("profile_pk")
         obj = Profile.objects.get(pk=pk)
 
+        view_profile = obj.pk
+        post_obj = BlogPost.objects.filter(author=view_profile)
+
         if obj.user in my_profile.subscribed.all():
             my_profile.subscribed.remove(obj.user)
+            for r in post_obj:
+                my_profile.readed.remove(r.pk)
         else:
             my_profile.subscribed.add(obj.user)
         return redirect(request.META.get("HTTP_REFERER"))

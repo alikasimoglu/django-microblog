@@ -7,6 +7,7 @@
     <form action="{% url "blogs:post-create" %}" method="POST">
         {% csrf_token %}
         {{ form|crispy }}
+        <br>
         <input type="submit" value="Create" class="btn btn-success btn-sm"/>
     </form>
 {% endblock %}
