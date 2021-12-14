@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'blogs',
     'profiles',
+    'crispy_forms'
 ]
 
 # Define SITE_ID:

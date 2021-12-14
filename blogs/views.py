@@ -1,7 +1,12 @@
 from itertools import chain
 
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
-from django.views.generic import ListView
+from django.urls import reverse
+from django.views.generic import ListView, CreateView
 from blogs.models import BlogPost
 from profiles.models import Profile
 
@@ -42,6 +47,26 @@ class SubcribedBlogsListView(ListView):
         readed = profile.readed.all()
         context["readed"] = readed
         return context
+
+
+class BlogPostCreateView(CreateView):
+    model = BlogPost
+    template_name = 'blogs/post_create.html'
+    fields = ["author", "post_title", "post_content"]
+    error_message = 'Error saving the post, check fields below.'
+
+    def get_success_url(self):
+        return reverse("blogs:post-create")
+
+    def form_valid(self, form):
+        post_form = form.save(commit=False)
+        post_form.user = self.request.user
+        post_form.save()
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, self.error_message)
+        return super().form_invalid(form)
 
 
 def mark_as_read_button(request):
