@@ -5,6 +5,19 @@
 {% block content %}
     {% for post in posts %}
         <h5 class="card-title">{{ post.post_title }}</h5>
+        {% if post in readed %}
+            <form action="{% url "blogs:mark_as_read" %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="post_pk" value={{ post.pk }}>
+                <button type="submit" class="btn btn-danger btn-sm">Mark as unread</button>
+            </form>
+        {% else %}
+            <form action="{% url "blogs:mark_as_read" %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="post_pk" value={{ post.pk }}>
+                <button type="submit" class="btn btn-success btn-sm">Mark as read</button>
+            </form>
+        {% endif %}
         <p class="card-text">{{ post.created }}</p>
         <p class="card-body">{{ post.post_content }}</p>
         <hr>

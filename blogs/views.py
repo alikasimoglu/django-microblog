@@ -1,4 +1,6 @@
 from itertools import chain
+
+from django.shortcuts import redirect
 from django.views.generic import ListView
 from blogs.models import BlogPost
 from profiles.models import Profile
@@ -24,6 +26,7 @@ class MyBlogListView(ListView):
 class SubcribedBlogsListView(ListView):
     model = BlogPost
     template_name = 'blogs/subcribed_blogs.html'
+    context_object_name = "posts"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -36,4 +39,20 @@ class SubcribedBlogsListView(ListView):
             posts.append(p_posts)
             unpack = sorted(chain(*posts), reverse=True, key=lambda obj: obj.created)
             context["posts"] = unpack
+        readed = profile.readed.all()
+        context["readed"] = readed
         return context
+
+
+def mark_as_read_button(request):
+    if request.method == "POST":
+        my_profile = Profile.objects.get(user=request.user)
+        post = request.POST.get("post_pk")
+        obj = BlogPost.objects.get(pk=post)
+
+        if obj in my_profile.readed.all():
+            my_profile.readed.remove(obj)
+        else:
+            my_profile.readed.add(obj)
+        return redirect(request.META.get("HTTP_REFERER"))
+    return redirect("blogs:subscribed-blogs")
