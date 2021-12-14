@@ -1,6 +1,8 @@
 from itertools import chain
 from django.contrib import messages
-from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import ListView, CreateView
@@ -44,6 +46,17 @@ class SubcribedBlogsListView(ListView):
         readed = profile.readed.all()
         context["readed"] = readed
         return context
+
+
+@receiver(post_save, sender=BlogPost)
+def send_mail_to_subs(sender, instance, created, **kwargs):
+    if created:
+        send_mail(
+            f'New Post',
+            'Hi .... ',
+            'testcod77@gmail.com',
+            ["alikasimoglu@gmail.com"],
+        )
 
 
 class BlogPostCreateView(CreateView):
