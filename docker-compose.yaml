@@ -1,0 +1,16 @@
+version: '3.10'
+services:
+ web:
+   build: .
+   ports:
+    - "8005:8005"
+   volumes:
+    - .:/code
+   links:
+    - db
+ db:
+   image: nouchka/sqlite3:latest
+   volumes:
+     - ./data/db:/root/db
+   environment:
+     - SQLITE3_DB=db.sqlite3

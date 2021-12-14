@@ -1,6 +1,6 @@
 from .base import *
 
-ALLOWED_HOSTS = ['domainname.com']
+ALLOWED_HOSTS = ['*']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -32,3 +32,4 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+

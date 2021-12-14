@@ -6,3 +6,4 @@ sqlparse==0.4.2
 tzdata==2021.5
 wheel==0.37.0
 django-environ==0.8.1
+django-crispy-forms==1.13.0
