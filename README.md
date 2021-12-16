@@ -1,6 +1,6 @@
 # django-microblog
 
-This is a test microblogging project created with Django 4.0. But don't worry this is a fully working project. There is no super-amazing front-end, just back-end codes with minimal html :)
+This is a test microblog project created using Django 4.0. But don't worry this is a fully working project. There is no super-amazing front-end, just back-end codes with minimal html :)
 
 ```bash
 $ git@github.com:alikasimoglu/django-microblog.git
@@ -15,7 +15,6 @@ Stack and version numbers used:
 |----------------|----------|
 | Django         | 4.0      |
 | Python         | 3.10     |
-| SQLite         | 3        |
 
 
 ## Folder structure
