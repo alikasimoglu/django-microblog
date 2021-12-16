@@ -1,13 +1,14 @@
 version: '3.9'
 services:
  web:
-   command: python manage.py runserver 0.0.0.0:8005
    build: .
-   ports:
-    - "8005:8005"
+   command: python manage.py runserver 0.0.0.0:8005
+   container_name: django_microblog
    volumes:
     - .:/app
-   links:
+   ports:
+    - "8005:8005"
+   depends_on:
     - db
    environment:
     - DEBUG=1

@@ -6,8 +6,8 @@ This is a test microblogging project created with Django 4.0. But don't worry th
 $ git@github.com:alikasimoglu/django-microblog.git
 $ docker-compose up
 ```
-Now you can access the application at <https://localhost/blogs> and the admin site
-at <https://localhost/admin>.
+Now you can access the application at <https://localhost:8005//blogs> and the admin site
+at <https://localhost:8005/admin>.
 
 Stack and version numbers used:
 
@@ -15,6 +15,7 @@ Stack and version numbers used:
 |----------------|----------|
 | Django         | 4.0      |
 | Python         | 3.10     |
+| SQLite         | 3        |
 
 
 ## Folder structure
@@ -34,4 +35,4 @@ Stack and version numbers used:
 └── requirement.txt         # python requirements
 ```
 
-Verify that your production settings (not the development settings!) are active. Navigate to http://<ip address>/spamalot. You should see the basic Nginx "not found" page. If you see the full Django error page, that means that DEBUG = True, which probably means that your production settings are not loaded.
+Project using only SQLite database because of it's a test project. But easily can be changed to PostgreSQL. 
