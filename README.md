@@ -13,7 +13,7 @@ Stack and version numbers used:
 
 | Name           | Version  |
 |----------------|----------|
-| Django         | 4.0      |
+| Django         | 4.0.4      |
 | Python         | 3.10     |
 
 
